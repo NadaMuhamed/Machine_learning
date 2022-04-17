@@ -5,10 +5,11 @@ import matplotlib.pyplot as plt
 from sklearn import linear_model
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import PolynomialFeatures
 from datetime import datetime
 from datetime import timedelta
 from sklearn.preprocessing import *
+from function import *
+import re
 ##########################################################
 data = pd.read_csv('airline-price-prediction.csv')
 data.dropna(how='any',inplace=True)
@@ -24,12 +25,7 @@ corr = airline.corr()
 X['date']=datetime(X['date'])
 ################### 'time_taken'
 UNITS = {"s":"seconds", "m":"minutes", "h":"hours", "d":"days", "w":"weeks"}
-def convert_to_seconds(s):
-    count = int(s[:-1])
-    unit = UNITS[s[-1]]
-    td = timedelta(**{unit: count})
-    return td.seconds + 60 * 60 * 24 * td.days
-X['time_taken']=convert_to_seconds(X['time_taken'])
+X['time_taken']=convert_to_seconds1(X['time_taken'])
 ################### 'time_taken' and 'route'
 
 ###########################"Model 1"###############################
