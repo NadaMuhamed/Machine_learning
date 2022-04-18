@@ -20,11 +20,11 @@ X=data.iloc[:,0:10]
 Y=data['price']
 airline= data.iloc[:,:]
 X = dictionary_to_columns(X, 'route')
-cols=('airline','ch_code','stop','type', 'source', 'destination')
+cols=('airline','ch_code','type', 'source', 'destination')
 X = Feature_Encoder(X,cols)
 corr = airline.corr()
 ################### timestamp for 'date'
-
+X = DateConvert(X)
 ################### 'time_taken'
 X['time_taken'] = time_taken_to_seconds(X)
 ################### 'time_taken' and 'route'

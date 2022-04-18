@@ -1,5 +1,5 @@
 import ast
-from datetime import timedelta
+from datetime import timedelta, datetime
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 import re
@@ -24,8 +24,6 @@ def Feature_Encoder(X,cols):
     return X
 
 
-
-
 def dictionary_to_columns(X, colmn):
     temp = X[colmn].values
     X.drop(colmn, inplace=True, axis=1)
@@ -35,3 +33,8 @@ def dictionary_to_columns(X, colmn):
     X['destination'] = d
     return X
 
+### date
+def DateConvert(X):
+    datalist = [datetime.timestamp(datetime.strptime(d, '%d/%m/%Y')) for d in [t.replace('-', '/') for t in X['date'].values]]
+    X['date'] = datalist
+    return X
