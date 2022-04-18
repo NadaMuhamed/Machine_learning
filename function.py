@@ -5,18 +5,16 @@ import numpy as np
 import re
 
 
-UNITS = {"s":"seconds", "m":"minutes", "h":"hours", "d":"days", "w":"weeks"}
-def convert_to_seconds1(s):
-    count = int(s[:-1])
-    unit = UNITS[s[-1]]
-    td = timedelta(**{unit: count})
-    return td.seconds + 60 * 60 * 24 * td.days
 
-def convert_to_seconds2(s):
-    return int(timedelta(**{
+
+def time_taken_to_seconds(X):
+    UNITS = {"s": "seconds", "m": "minutes", "h": "hours", "d": "days", "w": "weeks"}
+    return [int(timedelta(**{
         UNITS.get(m.group('unit').lower(), 'seconds'): float(m.group('val'))
         for m in re.finditer(r'(?P<val>\d+(\.\d+)?)(?P<unit>[smhdw]?)', s, flags=re.I)
-    }).total_seconds())
+    }).total_seconds()) for s in X['time_taken']]
+
+
 
 def Feature_Encoder(X,cols):
     for c in cols:
@@ -24,6 +22,8 @@ def Feature_Encoder(X,cols):
         lbl.fit(list(X[c].values))
         X[c] = lbl.transform(list(X[c].values))
     return X
+
+
 
 
 def dictionary_to_columns(X, colmn):
