@@ -38,3 +38,17 @@ def DateConvert(X):
     datalist = [datetime.timestamp(datetime.strptime(d, '%d/%m/%Y')) for d in [t.replace('-', '/') for t in X['date'].values]]
     X['date'] = datalist
     return X
+
+
+def Stop_Feature(column, values):
+    spec_chars = ["!", '"', "#", "%", "&", "'", "(", ")",
+                  "*", "+", ",", "-", ".", "/", ":", ";", "<",
+                  "=", ">", "?", "@", "[", "\\", "]", "^", "_",
+                  "`", "{", "|", "}", "~", "–"]
+    for char in spec_chars:
+        column = column.str.replace(char, '', regex=True)
+
+    column = column.replace(values[0], 1, regex=True)
+    column = column.replace(values[1], 0, regex=True)
+    column = column.replace(values[2], 2, regex=True)
+    return column

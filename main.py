@@ -29,3 +29,7 @@ X = DateConvert(X)
 X['time_taken'] = time_taken_to_seconds(X)
 ################### 'time_taken' and 'route'
 
+######################stop
+values=["1stop","nonstop","2stop"]
+X['stop'] = Stop_Feature(X['stop'],values)
+print(X['stop'][11])
