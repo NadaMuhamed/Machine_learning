@@ -30,3 +30,9 @@ X = Date_Converter(X)
 X['time_taken'] = time_taken_to_seconds(X)
 ###################### 'stop'
 X['stop'] = Stop_Feature(X['stop'])
+
+
+####################converttomin
+X['dep_time']= converttomin(X['dep_time'])
+X['arr_time']= converttomin(X['arr_time'])
+

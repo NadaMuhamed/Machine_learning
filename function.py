@@ -53,3 +53,9 @@ def Stop_Feature(column):
     column = column.replace(values[1], 0, regex=True)
     column = column.replace(values[2], 2, regex=True)
     return column
+
+
+
+def converttomin(x):
+    x=x.str.split(':').apply(lambda x: int(x[0]) * 60 + int(x[1]))
+    return x
