@@ -34,13 +34,14 @@ def dictionary_to_columns(X, colmn):
     return X
 
 ### date
-def DateConvert(X):
+def Date_Converter(X):
     datalist = [datetime.timestamp(datetime.strptime(d, '%d/%m/%Y')) for d in [t.replace('-', '/') for t in X['date'].values]]
     X['date'] = datalist
     return X
 
 
-def Stop_Feature(column, values):
+def Stop_Feature(column):
+    values = ["1stop", "nonstop", "2stop"]
     spec_chars = ["!", '"', "#", "%", "&", "'", "(", ")",
                   "*", "+", ",", "-", ".", "/", ":", ";", "<",
                   "=", ">", "?", "@", "[", "\\", "]", "^", "_",

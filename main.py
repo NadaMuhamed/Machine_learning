@@ -19,17 +19,14 @@ data.dropna(how='any',inplace=True)
 X=data.iloc[:,0:10]
 Y=data['price']
 airline= data.iloc[:,:]
+###################  'route'
 X = dictionary_to_columns(X, 'route')
 cols=('airline','ch_code','type', 'source', 'destination')
 X = Feature_Encoder(X,cols)
 corr = airline.corr()
 ################### timestamp for 'date'
-X = DateConvert(X)
+X = Date_Converter(X)
 ################### 'time_taken'
 X['time_taken'] = time_taken_to_seconds(X)
-################### 'time_taken' and 'route'
-
-######################stop
-values=["1stop","nonstop","2stop"]
-X['stop'] = Stop_Feature(X['stop'],values)
-print(X['stop'][11])
+###################### 'stop'
+X['stop'] = Stop_Feature(X['stop'])
