@@ -10,6 +10,7 @@ from datetime import timedelta
 from sklearn.preprocessing import *
 from function import *
 import re
+
 ##########################################################
 data = pd.read_csv('airline-price-prediction.csv')
 data.dropna(how='any',inplace=True)
@@ -18,8 +19,10 @@ data.dropna(how='any',inplace=True)
 X=data.iloc[:,0:10]
 Y=data['price']
 airline= data.iloc[:,:]
-cols=('airline','ch_code','stop','type')
-X=Feature_Encoder(X,cols)
+cols=('airline','ch_code','type')
+X = Feature_Encoder(X,cols)
+X = dictionary_to_columns(X, 'route')
+
 corr = airline.corr()
 ################### timestamp for 'date'
 X['date']=datetime(X['date'])
