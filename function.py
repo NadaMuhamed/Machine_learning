@@ -1,4 +1,5 @@
 import ast
+import math
 from datetime import timedelta, datetime
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
@@ -37,6 +38,9 @@ def dictionary_to_columns(X, colmn):
 def Date_Converter(X):
     datalist = [datetime.timestamp(datetime.strptime(d, '%d/%m/%Y')) for d in [t.replace('-', '/') for t in X['date'].values]]
     X['date'] = datalist
+    temp=[int(str(p)[:-4]) for p in X['date'].values]
+    X['date']=temp
+
     return X
 
 

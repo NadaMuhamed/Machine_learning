@@ -25,6 +25,7 @@ cols=('airline','ch_code','type', 'source', 'destination')
 X = Feature_Encoder(X,cols)
 corr = airline.corr()
 ################### timestamp for 'date'
+print("t")
 X = Date_Converter(X)
 ################### 'time_taken'
 X['time_taken'] = time_taken_to_seconds(X)
