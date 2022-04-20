@@ -123,4 +123,13 @@ true_price3=np.asarray(y_test3)[0]
 predicted_pruce3=prediction3[0]
 print('True price for the test set is : ' + str(true_price3))
 print('Predicted price for the test set is : ' + str(predicted_pruce3))
+
+###########################"Model 4"###############################
+print("\n  Model 4  \n")
+linear_model4 = linear_model.LinearRegression()
+linear_model4.fit(X,Y)
+prediction4= linear_model4.predict(X)
+#print('Co-efficient of linear regression',linear_model4.coef_)
+#print('Intercept of linear regression model',linear_model4.intercept_)
+print('Mean Square Error', metrics.mean_squared_error(np.asarray(Y), prediction4))
 ####################################################################################################################
