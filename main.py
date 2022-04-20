@@ -139,4 +139,5 @@ prediction4= linear_model4.predict(X)
 #print('Co-efficient of linear regression',linear_model4.coef_)
 #print('Intercept of linear regression model',linear_model4.intercept_)
 print('Mean Square Error', metrics.mean_squared_error(np.asarray(Y), prediction4))
+print('regression score function model 4', r2_score(Y, prediction4))
 ####################################################################################################################
