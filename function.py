@@ -63,3 +63,12 @@ def Stop_Feature(column):
 def converttomin(x):
     x=x.str.split(':').apply(lambda x: int(x[0]) * 60 + int(x[1]))
     return x
+
+
+def handel_price(Y):
+    Y = Y.str.split(',').apply(lambda Y: int(Y[0]))
+    return Y
+
+
+
+#[ float(f) for f in[ t.replace(',','.') for t in Y]]
