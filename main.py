@@ -42,7 +42,7 @@ airline['price'] = Y
 ###########################"Model 1"###############################
 print("\n  Model 1  \n")
 corr = airline.corr()
-top_feature1 = corr.index[abs(corr['price'])>0.5]
+top_feature1 = corr.index[abs(corr['price'])>0.35]
 #Correlation plot
 plt.subplots(figsize=(12, 8))
 top_corr1 = airline[top_feature1].corr()
@@ -98,7 +98,7 @@ print('Predicted price for the test set is : ' + str(predicted_pruce2))
 
 ###########################"Model 3"###############################
 print("\n  Model 3  \n")
-top_feature3 = corr.index[abs(corr['price'])>0.3]
+top_feature3 = corr.index[abs(corr['price'])>0.4]
 #Correlation plot
 plt.subplots(figsize=(12, 8))
 top_corr3 = airline[top_feature3].corr()
@@ -109,7 +109,7 @@ X = X[top_feature3]
 
 X_train3, X_test3, y_train3, y_test3 = train_test_split(X, Y, test_size = 0.40,shuffle=True,random_state=10)
 
-poly_features3 = PolynomialFeatures(degree=40)
+poly_features3 = PolynomialFeatures(degree=30)
 X_train_poly3 = poly_features3.fit_transform(X_train3)
 poly_model3 = linear_model.LinearRegression()
 poly_model3.fit(X_train_poly3, y_train3)
