@@ -66,9 +66,10 @@ def converttomin(x):
 
 
 def handel_price(Y):
-    Y = Y.str.split(',').apply(lambda Y: int(Y[0]))
-    return Y
+    return [ int(f) for f in[ t.replace(',','') for t in Y]]
 
 
 
-#[ float(f) for f in[ t.replace(',','.') for t in Y]]
+
+
+#    Y = Y.str.split(',').apply(lambda Y: int(Y[0]))

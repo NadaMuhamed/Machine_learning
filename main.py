@@ -18,7 +18,8 @@ data.dropna(how='any',inplace=True)
 ##########################################################
 X=data.iloc[:,0:10]
 # Y= [float(f) for f in data['price']]
-Y = [int(y) for y in handel_price(data['price'])]
+Y = handel_price(data['price'])
+#[int(y) for y in handel_price(data['price'])]
 # airline= data.iloc[:,:]
 # airline['price'] = Y
 ###################  'route'
