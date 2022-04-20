@@ -17,29 +17,32 @@ data.dropna(how='any',inplace=True)
 
 ##########################################################
 X=data.iloc[:,0:10]
-Y=data['price']
-airline= data.iloc[:,:]
+# Y= [float(f) for f in data['price']]
+Y = [int(y) for y in handel_price(data['price'])]
+# airline= data.iloc[:,:]
+# airline['price'] = Y
 ###################  'route'
 X = dictionary_to_columns(X, 'route')
 cols=('airline','ch_code','type', 'source', 'destination')
 X = Feature_Encoder(X,cols)
-corr = airline.corr()
 ################### timestamp for 'date'
-print("t")
 X = Date_Converter(X)
 ################### 'time_taken'
 X['time_taken'] = time_taken_to_seconds(X)
 ###################### 'stop'
 X['stop'] = Stop_Feature(X['stop'])
-
-
 ####################converttomin
 X['dep_time']= converttomin(X['dep_time'])
 X['arr_time']= converttomin(X['arr_time'])
+############################
+airline = X
+airline['price'] = Y
+
 
 ###########################"Model 1"###############################
 print("\n  Model 1  \n")
-top_feature1 = corr.index[abs(corr['price'])>0.5]
+corr = airline.corr()
+top_feature1 = corr.index[abs(corr['price'])>0.0]
 #Correlation plot
 plt.subplots(figsize=(12, 8))
 top_corr1 = airline[top_feature1].corr()
