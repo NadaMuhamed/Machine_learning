@@ -50,7 +50,7 @@ top_feature1 = corr.index[abs(corr['price'])>0.1]
 plt.subplots(figsize=(12, 8))
 top_corr1 = airline[top_feature1].corr()
 sns.heatmap(top_corr1, annot=True)
-plt.show()
+#plt.show()
 top_feature1 = top_feature1.delete(-1)
 X = X[top_feature1]
 
@@ -82,7 +82,7 @@ top_feature2 = corr.index[abs(corr['price'])>0.3]
 plt.subplots(figsize=(12, 8))
 top_corr2 = airline[top_feature2].corr()
 sns.heatmap(top_corr2, annot=True)
-plt.show()
+#plt.show()
 top_feature2 = top_feature2.delete(-1)
 X = X[top_feature2]
 
@@ -114,7 +114,7 @@ top_feature3 = corr.index[abs(corr['price'])>0.3]
 plt.subplots(figsize=(12, 8))
 top_corr3 = airline[top_feature3].corr()
 sns.heatmap(top_corr3, annot=True)
-plt.show()
+#plt.show()
 top_feature3 = top_feature3.delete(-1)
 X = X[top_feature3]
 
@@ -136,7 +136,7 @@ predicted_pruce3=prediction3[0]
 print('True price for the test set is : ' + str(true_price3))
 print('Predicted price for the test set is : ' + str(predicted_pruce3))
 exec3=time.time()-start3
-print("Training Time for Model 1   :   ",exec3)
+print("Training Time for Model 3   :   ",exec3)
 
 ###########################"Model 4"###############################
 print("\n  Model 4  \n")
@@ -149,5 +149,5 @@ prediction4= linear_model4.predict(X)
 print('Mean Square Error', metrics.mean_squared_error(np.asarray(Y), prediction4))
 print('regression score function model 4', r2_score(Y, prediction4))
 exec4=time.time()-start4
-print("Training Time for Model 1   :   ",exec4)
+print("Training Time for Model 4   :   ",exec4)
 ####################################################################################################################
