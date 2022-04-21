@@ -11,7 +11,7 @@ from datetime import timedelta
 from sklearn.preprocessing import *
 from function import *
 import re
-
+import time
 ##########################################################
 data = pd.read_csv('airline-price-prediction.csv')
 data.dropna(how='any',inplace=True)
@@ -42,6 +42,7 @@ airline['price'] = Y
 
 
 ###########################"Model 1"###############################
+start1=time.time()
 print("\n  Model 1  \n")
 corr = airline.corr()
 top_feature1 = corr.index[abs(corr['price'])>0.1]
@@ -70,8 +71,11 @@ true_price1=np.asarray(y_test1)[0]
 predicted_pruce1=prediction1[0]
 print('True price for the test set is : ' + str(true_price1))
 print('Predicted price for the test set is : ' + str(predicted_pruce1))
+exec1=time.time()-start1
+print("Training Time for Model 1   :   ",exec1)
 
 ###########################"Model 2"###############################
+start2=time.time()
 print("\n  Model 2  \n")
 top_feature2 = corr.index[abs(corr['price'])>0.3]
 #Correlation plot
@@ -100,8 +104,10 @@ true_price2=np.asarray(y_test2)[0]
 predicted_pruce2=prediction2[0]
 print('True price for the test set is : ' + str(true_price2))
 print('Predicted price for the test set is : ' + str(predicted_pruce2))
-
+exec2=time.time()-start2
+print("Training Time for Model 2   :   ",exec2)
 ###########################"Model 3"###############################
+start3=time.time()
 print("\n  Model 3  \n")
 top_feature3 = corr.index[abs(corr['price'])>0.3]
 #Correlation plot
@@ -129,10 +135,12 @@ true_price3=np.asarray(y_test3)[0]
 predicted_pruce3=prediction3[0]
 print('True price for the test set is : ' + str(true_price3))
 print('Predicted price for the test set is : ' + str(predicted_pruce3))
+exec3=time.time()-start3
+print("Training Time for Model 1   :   ",exec3)
 
 ###########################"Model 4"###############################
 print("\n  Model 4  \n")
-
+start4=time.time()
 linear_model4 = linear_model.LinearRegression()
 linear_model4.fit(X,Y)
 prediction4= linear_model4.predict(X)
@@ -140,4 +148,6 @@ prediction4= linear_model4.predict(X)
 #print('Intercept of linear regression model',linear_model4.intercept_)
 print('Mean Square Error', metrics.mean_squared_error(np.asarray(Y), prediction4))
 print('regression score function model 4', r2_score(Y, prediction4))
+exec4=time.time()-start4
+print("Training Time for Model 1   :   ",exec4)
 ####################################################################################################################
