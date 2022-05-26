@@ -4,6 +4,23 @@ from datetime import timedelta, datetime
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 import re
+from sklearn import svm, datasets
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn import linear_model
+from sklearn import metrics
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
+from datetime import datetime
+from datetime import timedelta
+from sklearn.preprocessing import *
+import time
+import ast
+import math
+from datetime import timedelta, datetime
+from sklearn.preprocessing import LabelEncoder
+import re
 
 
 
@@ -69,6 +86,32 @@ def handel_price(Y):
     return [ int(f) for f in[ t.replace(',','') for t in Y]]
 
 
+def preprocessing_x(X):
+    X = dictionary_to_columns(X, 'route')
+    cols = ('airline', 'ch_code', 'type', 'source', 'destination')
+    X = Feature_Encoder(X, cols)
+    X = Date_Converter(X)
+    X['time_taken'] = time_taken_to_seconds(X)
+    X['stop'] = Stop_Feature(X['stop'])
+    X['dep_time'] = converttomin(X['dep_time'])
+    X['arr_time'] = converttomin(X['arr_time'])
+    X['date'].fillna(16466895.662425898, inplace=True)
+    X['airline'].fillna(3.739671451408779, inplace=True)
+    X['ch_code'].fillna(4.28735512555785, inplace=True)
+    X['num_code'].fillna(1422.2229026510358, inplace=True)
+    X['dep_time'].fillna(48338.42794578032, inplace=True)
+    X['time_taken'].fillna(43938.79031506028, inplace=True)
+    X['stop'].fillna(0.9236828082328649, inplace=True)
+    X['arr_time'].fillna(56646.54008192899, inplace=True)
+    X['type'].fillna(0.6892443215879571, inplace=True)
+    X['source'].fillna(2.5745395657097183, inplace=True)
+    X['destination'].fillna(2.5873326450409646, inplace=True)
+    return X
+
+def preprocessing_y(Y):
+    Y.fillna(1105, inplace=True)
+    Y = handel_price(Y)
+    return Y
 
 
 
