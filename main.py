@@ -65,10 +65,12 @@ sns.heatmap(top_corr1, annot=True)
 plt.show()
 start1 = time.time()
 top_feature1 = top_feature1.delete(-1)
-#X = X[top_feature1]
+X = X[top_feature1]
 X_train1, X_test1, y_train1, y_test1 = train_test_split(X, Y, test_size=0.50, shuffle=True, random_state=10)
+
 poly_features1 = PolynomialFeatures(degree=2)
 X_train_poly1 = poly_features1.fit_transform(X_train1)
+
 poly_model1 = linear_model.LinearRegression()
 poly_model1.fit(X_train_poly1, y_train1)
 y_train_predicted1 = poly_model1.predict(X_train_poly1)
@@ -95,14 +97,15 @@ start2 = time.time()
 top_feature2 = top_feature2.delete(-1)
 X = X[top_feature2]
 X_train2, X_test2, y_train2, y_test2 = train_test_split(X, Y, test_size=0.30, shuffle=True, random_state=10)
+
 poly_features2 = PolynomialFeatures(degree=3)
 X_train_poly2 = poly_features2.fit_transform(X_train2)
+
 poly_model2 = linear_model.LinearRegression()
 poly_model2.fit(X_train_poly2, y_train2)
 y_train_predicted2 = poly_model2.predict(X_train_poly2)
 ypred2 = poly_model2.predict(poly_features2.transform(X_test2))
 prediction2 = poly_model2.predict(poly_features2.fit_transform(X_test2))
-print('Mean Square Error', metrics.mean_squared_error(y_test2, prediction2))
 print('Mean Square Error', metrics.mean_squared_error(y_test2, prediction2))
 print('regression score function model 2', r2_score(y_test2, prediction2))
 true_price2 = np.asarray(y_test2)[0]
@@ -124,8 +127,10 @@ start3 = time.time()
 top_feature3 = top_feature3.delete(-1)
 X = X[top_feature3]
 X_train3, X_test3, y_train3, y_test3 = train_test_split(X, Y, test_size=0.40, shuffle=True, random_state=10)
+
 poly_features3 = PolynomialFeatures(degree=4)
 X_train_poly3 = poly_features3.fit_transform(X_train3)
+
 poly_model3 = linear_model.LinearRegression()
 poly_model3.fit(X_train_poly3, y_train3)
 y_train_predicted3 = poly_model3.predict(X_train_poly3)

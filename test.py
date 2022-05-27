@@ -41,6 +41,7 @@ Y = data.iloc[:, -1]
 X=preprocessing_x(X)
 Y=preprocessing_y(Y)
 ##########################################################
+"""
 model1 = pickle.load(open('model1', 'rb'))
 result1 = model1.score(X, Y)
 print("model1",result1)
@@ -52,7 +53,7 @@ print("model2",result2)
 model3 = pickle.load(open('model3', 'rb'))
 result3 = model3.score(X, Y)
 print("model3",result3)
-
+"""
 model4 = pickle.load(open('model4', 'rb'))
 result4 = model4.score(X, Y)
 print("model4",result4)
