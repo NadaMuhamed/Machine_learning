@@ -42,6 +42,9 @@ from sklearn.datasets import make_gaussian_quantiles
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.metrics import accuracy_score
 import pickle
+
+from function import preprocessing_x
+from test import *
 ##########################################################
 data = pd.read_csv('airline-price-prediction.csv')
 #data.dropna(how='any', inplace=True)
@@ -62,6 +65,7 @@ top_feature1 = corr.index[abs(corr['price']) > 0.1]
 plt.subplots(figsize=(12, 8))
 top_corr1 = airline[top_feature1].corr()
 sns.heatmap(top_corr1, annot=True)
+
 plt.show()
 start1 = time.time()
 top_feature1 = top_feature1.delete(-1)
@@ -74,7 +78,6 @@ X_train_poly1 = poly_features1.fit_transform(X_train1)
 poly_model1 = linear_model.LinearRegression()
 poly_model1.fit(X_train_poly1, y_train1)
 y_train_predicted1 = poly_model1.predict(X_train_poly1)
-ypred1 = poly_model1.predict(poly_features1.transform(X_test1))
 prediction1 = poly_model1.predict(poly_features1.fit_transform(X_test1))
 print('Mean Square Error', metrics.mean_squared_error(y_test1, prediction1))
 print('regression score function model 1', r2_score(y_test1, prediction1))
@@ -104,7 +107,6 @@ X_train_poly2 = poly_features2.fit_transform(X_train2)
 poly_model2 = linear_model.LinearRegression()
 poly_model2.fit(X_train_poly2, y_train2)
 y_train_predicted2 = poly_model2.predict(X_train_poly2)
-ypred2 = poly_model2.predict(poly_features2.transform(X_test2))
 prediction2 = poly_model2.predict(poly_features2.fit_transform(X_test2))
 print('Mean Square Error', metrics.mean_squared_error(y_test2, prediction2))
 print('regression score function model 2', r2_score(y_test2, prediction2))
@@ -134,7 +136,6 @@ X_train_poly3 = poly_features3.fit_transform(X_train3)
 poly_model3 = linear_model.LinearRegression()
 poly_model3.fit(X_train_poly3, y_train3)
 y_train_predicted3 = poly_model3.predict(X_train_poly3)
-ypred3 = poly_model3.predict(poly_features3.transform(X_test3))
 prediction3 = poly_model3.predict(poly_features3.fit_transform(X_test3))
 print('Mean Square Error', metrics.mean_squared_error(y_test3, prediction3))
 print('regression score function model 3', r2_score(y_test3, prediction3))
@@ -157,3 +158,10 @@ exec4 = time.time() - start4
 print("Training Time for Model 4   :   ", exec4)
 pickle.dump(linear_model4, open('model4', 'wb'))
 ####################################################################################################################
+
+top_feature1=top_feature1.delete(-1)
+t(top_feature1)
+
+
+
+

@@ -23,8 +23,6 @@ from sklearn.preprocessing import LabelEncoder
 import re
 
 
-
-
 def time_taken_to_seconds(X):
     UNITS = {"s": "seconds", "m": "minutes", "h": "hours", "d": "days", "w": "weeks"}
     return [int(timedelta(**{
@@ -112,6 +110,8 @@ def preprocessing_y(Y):
     Y.fillna(1105, inplace=True)
     Y = handel_price(Y)
     return Y
+
+
 
 
 
